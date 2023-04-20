@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="stopwatch">
+        <h2>Stopwatch</h2>
+        <div class="display">
+          <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="milliseconds">00</span>
+        </div>
+        <div class="controls">
+          <button id="start" onclick="start()">Start</button>
+          <button id="stop" onclick="stop()">Stop</button>
+          <button id="reset" onclick="reset()">Reset</button>
+        </div>
+      </div>
+      <script>
+        let minutes = 0;
+        let seconds = 0;
+        let milliseconds = 0;
+        let intervalId;
+
+        const startButton = document.getElementById("start");
+        const stopButton = document.getElementById("stop");
+        const resetButton = document.getElementById("reset");
+        
+
+        function start() {
+        intervalId = setInterval(function() {
+        milliseconds++;
+            if (milliseconds == 100) {
+                seconds++;
+                milliseconds = 0;
+                        }
+            if (seconds == 60) {
+                minutes++;
+                seconds = 0;
+                        }
+    console.log(pad(minutes) + ":" + pad(seconds) + ":" + pad(milliseconds));
+  }, 10);
+}
+
+        function stop() {
+            clearInterval(intervalId);
+}
+
+        function reset() {
+            clearInterval(intervalId);
+            minutes = 0;
+            seconds = 0;
+            milliseconds = 0;
+            console.log("00:00:00");
+}
+
+        function pad(n) {
+            return n < 10 ? "0" + n : n;
+}
+
+</script>   
+      
+</body>
+</html>
